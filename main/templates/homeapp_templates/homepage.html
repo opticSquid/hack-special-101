@@ -1,0 +1,26 @@
+<h3>Hi guys ! this is Home Page !</h>
+<br>
+<br>
+
+<h>{{user.username}}</h>
+{% for i in all_p %}
+<ul>
+<br><h3>{{i.name}}</h3>
+<br>
+<ol><h5>{{i.description}}<h5>
+<br>
+
+<img src="{{i.image1.url}}" height=300 width=300>
+<form action="{% url 'PRODUCT:add_to_cart'%}" method='POST'>{% csrf_token %}
+<input type='submit' value={{i.custom_id}} name='prod_custom_id_cart'>CART
+</form>
+
+
+<br>
+</ol>
+
+<ul>
+{%endfor%}
+{% if user.is_authenticated %}
+Logout <a href={% url 'user_logout' %}>Logout Here !
+{%endif%}

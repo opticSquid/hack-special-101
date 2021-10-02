@@ -1,0 +1,200 @@
+So it will be the page of 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{% for i in check_cart %}
+<br>
+<br>
+{{i.product_p.custom_id}}---custom id 
+<br>
+{{i.prod_quantity}} --Quantity
+<br>
+{{i.cart_total}}--Total
+<br>
+<button><a type="button"  class="plus-cart btn-success border border-light p-2"  prodid="{{i.product_p.custom_id}}">+</a></button>
+<button><a type="button"  class="minus-cart btn-success border border-light p-2" prodid="{{i.product_p.custom_id}}">-</a></button>
+<a class='del-cart btn' class='link' prodid="{{objects.product_p.custom_id}}" >Remove
+       ---------------------------------------------------
+<br>
+<br>
+{% endfor %}
+<button><a type="button"  class="add-tip-coin btn-success border border-light p-2" prodid="1">ADD TIP-COIN</a></button>
+<br>
+<button><a type="button"  class="reduce-tip-coin btn-success border border-light p-2" prodid="1">Reduce TIP-COIN</a></button>
+ <form action="{% url 'PRODUCT:checkout' %}" method="POST">{% csrf_token %}
+            <p>Check One Address Where You Want to Collect Your Order: </p>
+            <br>
+            {% for i in add  %} 
+            <!-- <div class="form-group">
+                    <label for="">Total Amount:</label>
+                    <input type="text" class="form-control" placeholder="" name="amount" disabled value="125.00">
+                  </div> -->
+             ADDRESS:[<b>{{forloop.counter}}</b>]
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="check_add_id"  value="{{i.pk}}" required>Ordered By :&nbsp{{user.first_name}} <br>Add id:{{i.pk}}<br>
+                {{user.username}} <br> Ph :{{i.ph_no}}<br>Landmark:{{i.landmark}} <br>Full Address:{{i.full_address}}
+              </label>
+            </div>
+             {%endfor%} 
+            <br>
+  
+            <div class="text-center">
+              <input type="submit" class="btn btn-outline-success">
+            </div>
+          </form>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+
+
+<script language='javascript' type='text/javascript'>
+console.log("Working the script tag!")
+
+$('.plus-cart').click(function(){
+
+    var id =$(this).attr("prodid").toString();
+    var element= this.parentNode.children[1]
+
+    
+    
+    console.log('clicked....For Plus Cart............')
+    console.log(id)
+    console.log(element)
+
+
+    $.ajax({
+
+        type:"GET",
+        url:"/plus_cart",
+        data:{
+            prod_id : id
+        },
+        success: function(plus_cart_res) {
+           
+            console.log(plus_cart_res)
+            console.log("succes")
+            location.reload()
+
+        }
+    })
+})
+
+$('.minus-cart').click(function(){
+
+    var id =$(this).attr("prodid").toString();
+    
+    console.log('clicked....For Minus Cart............')
+    console.log(id)
+
+    $.ajax({
+
+        type:"GET",
+        url:"/minus_cart",
+        data:{
+            prod_id : id
+        },
+        success: function(minus_cart_res) {
+           
+            console.log(minus_cart_res)
+            console.log("succes")
+            location.reload()
+
+        }
+    })
+})
+
+
+$('.del-cart').click(function(){
+
+    var id =$(this).attr("prodid").toString();
+    
+    console.log('clicked....For Minus Cart............')
+    console.log(id)
+
+    $.ajax({
+
+        type:"GET",
+        url:"/delete_cart",
+        data:{
+            prod_id : id
+        },
+        success: function(delete_cart_res) {
+           
+            console.log(delete_cart_res)
+            console.log("success")
+            location.reload()
+
+        }
+    })
+})
+
+$('.add-tip-coin').click(function(){
+
+    var id =$(this).attr("prodid");
+    {% comment %} var element= this.parentNode.children[1] {% endcomment %}
+
+    
+    
+    console.log('clicked..FOR TIP COIN........')
+    console.log(id)
+  
+
+
+    $.ajax({
+
+        type:"GET",
+        url:"/add_tipcoin",
+        data:{
+            prod_id : id
+        },
+        success: function(tip_coin_res) {
+           
+            console.log(tip_coin_res)
+            console.log("succes")
+            location.reload()
+
+        }
+    })
+})
+
+$('.reduce-tip-coin').click(function(){
+
+    var id =$(this).attr("prodid");
+    {% comment %} var element= this.parentNode.children[1] {% endcomment %}
+
+    
+    
+    console.log('clicked..FOR TIP COIN    REDUCTION ........')
+    console.log(id)
+  
+
+
+    $.ajax({
+
+        type:"GET",
+        url:"/reduce_tipcoin",
+        data:{
+            prod_id : id
+        },
+        success: function(tip_coin_res) {
+           
+            console.log(tip_coin_res)
+            console.log("succes")
+            location.reload()
+
+        }
+    })
+})
+
+</script> 

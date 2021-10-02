@@ -1,0 +1,34 @@
+hi add address here !
+ <form action="{% url 'PRODUCT:add_address' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                      
+                      
+                        <div class="form-group">
+                            <label >Full Address:</label>
+                            <textarea class="form-control" rows="3" name='full_address' placeholder="Enter full address" required ></textarea>
+                          </div>
+
+                          <div class="form-group">
+                            <label >Pincode:</label>
+                            <input type="text" class="form-control" name='pin' placeholder="Enter Pincode" required>
+                          </div>
+                            <div class="form-group">
+                          <label >Phone:</label>
+                          <input type="tel" class="form-control" name='1st_phone' placeholder="Enter Phone  : +91" required maxlength='11'>
+                        </div>
+
+                        <div class="text-center mb-5">
+                            <input type="submit">
+                        </div>
+                      </form>
+                      <br>
+
+
+
+
+
+
+{% for i in p %}
+{{i.f_add}}
+<br>
+{{i.pin}}
+{% endfor %}

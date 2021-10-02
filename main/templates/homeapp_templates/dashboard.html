@@ -1,0 +1,14 @@
+<h>This will be your Dashboard </h>
+
+{% for i in order %}
+<br>
+{{i.o_palced_name}}---Order Name
+<br>
+{{i.order_price}}-----Price
+<br>
+{{i.order_quantity}}--Quantity
+<br>
+<br>
+
+[{{i.tip_coin.tips_count}} ]---Tip Coin 
+{% endfor %}
