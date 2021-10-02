@@ -1,0 +1,39 @@
+version : "3.8"
+
+#the os or the server for the container 
+services:
+    app_to_run:
+        build: .
+        volumes: 
+            - .:/app_my   #the app which we have created in docker file 
+
+        ports:
+            - "4000:4000"
+        image: app_to_run:app_my    # renaming or taging the app
+        
+        container_name: app_my_container_forHNI
+        command: >
+             sh -c "python manage.py migrate &&
+                    python manage.py runserver 0.0.0.0:4000"
+        
+        depends_on:
+            - pg_db
+        
+        # environment: 
+        #     - DB_NAME=postgres
+        #     - DB_USER=postgres
+        #     - DB_HOST=pg_db
+        #     - DB_PASS=postgres
+       
+
+    pg_db:
+        image: postgres
+        volumes:
+            - ./data/pg_db:/var/lib/postgres/data
+        container_name: postgres_databae 
+        environment: 
+            - POSTGRES_DB=app_to_run
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres   
+        ports: 
+            - "5432:5432"
