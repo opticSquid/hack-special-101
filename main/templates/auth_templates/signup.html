@@ -1,0 +1,67 @@
+ {% load static %}
+ Hi welcome to Signup Page!!
+<br>
+<br>
+ 	
+	<img class="wave" src="{% static 'img/wave.png' %}">
+	<div class="container">
+		<div class="img">
+			<img src="{% static 'img/bg.svg' %}">
+		</div>
+		<div class="login-content">
+			<form action="" method='POST'>{% csrf_token %}
+				<img src="{% static 'img/girl.jpg' %}">
+				<h2 class="title">Welcome</h2>
+                <h4 class='subtittle'>{{error2}} </h4><br>
+                <h4 class='subtittle'>{{error3}} </h4><br>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fa fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5></h5>
+           		   		<input type="text" class="input" placeholder='Name' name="user_name" required>
+           		   </div>
+           		</div>
+           		<div class="input-div one">
+           		   <div class="i"> 
+           		    	<i class="fa fa-envelope"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5></h5>
+           		    	<input type="email" class="input" placeholder='Email' name="email_u" required>
+            	   </div>
+            	</div>
+                <div class="input-div one">
+                    <div class="i"> 
+                         <i class="fa fa-phone"></i>
+                    </div>
+                    <div class="div">
+                         <h5></h5>
+                         <input type="tel" class="input"  placeholder='Mobile No' maxlength='10' name="ph_number" required>
+                 </div>
+              </div>
+                <div class="input-div pass">
+                    <div class="i"> 
+                         <i class="fa fa-lock"></i>
+                    </div>
+                    <div class="div">
+                         <h5></h5>
+                         <input type="password" class="input" name="type_password" placeholder='Enter password' required>
+                     </div>
+
+                    <div class="i"> 
+                         <i class="fa fa-lock"></i>
+                    </div>
+                     <div class="div">
+                        <input type="password" class="input" name="type_password_again" placeholder='Re-Enter-Password ' required>
+                    </div>
+                 </div>
+                 
+              </div>
+                
+            	<a href="/">Back To Home ?</a>
+                
+            	<input type="submit" class="btn" placeholder='Register'>
+                <a href="{% url 'user_login' %}"style="text-align: center;">Already have an account</a>
+            </form>

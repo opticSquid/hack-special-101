@@ -1,0 +1,42 @@
+{% load static %}
+
+
+<br>
+Welcome To login !
+<br>
+
+
+	<img class="wave" src="{% static 'img/wave.png' %}">
+	<div class="container">
+		<div class="img">
+			<img src="{% static 'img/bg.svg' %}">
+		</div>
+		<div class="login-content">
+			<form action="" method='POST'>{% csrf_token %}
+				<img src="{% static 'img/girl.jpg' %}">
+				<h2 class="title">Welcome</h2>
+                <h4 class ="subtittle">{{ error4 }}</h4>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fa fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5> </h5>
+           		   		<input type="email" name='username' class="input" placeholder='Email' required>
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fa fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5></h5>
+           		    	<input type="password"  name="u_password" placeholder='Password' class="input" required>
+            	   </div>
+            	</div>
+            	{% comment %} <a href="{% url 'reset_password' %}">Forgot Password ?</a>{% endcomment %}
+            	<input type="submit" class="btn" value="Login"> 
+				<a href="{% url 'user_signup' %}" style="text-align: center;">Create an account</a>
+				<br>
+				<b><a href='/'  style="text-align: center;">Back To Home?</b>
+		    </form>
